@@ -9,11 +9,31 @@
     align-items: center;
 }
 
+#rules {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.difficulty{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #grid {
     display: grid;
     grid-template-columns: repeat(5,auto);
     grid-template-rows: repeat(5,auto);
     height: 50vh;
     width: 50vw;
-    background-color: blue;
+    background-color: rgb(62, 62, 105);
+    border: 5px solid black;
+}
+/* put the box border temporarily so that I can see the movement later on more clearly, will take out when game done */
+.box { 
+    border: 1px solid black;
+}
+.snake {
+    background-color: green;
 }
