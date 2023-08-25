@@ -6,13 +6,12 @@ const grid = document.getElementById("grid");
 /*----- state variables -----*/
 let snakePos = 0
 let foodPos = 0
-let randomIndex = Math.floor(Math.random() * 25);
 let keys = {
     ArrowUp: true,
     ArrowLeft: true,
     ArrowRight: true,
     ArrowDown: true
-  };
+};
 
 /*----- cached elements  -----*/
 
@@ -38,7 +37,7 @@ function createBoard() {
 function snake() {
     let arr = Array.from({length:25});
     let index = Math.floor(Math.random() * 25);
-    for (index = Math.floor(Math.random() * 25); index === randomIndex; index = Math.floor(Math.random() * 25)) {
+    for (index = Math.floor(Math.random() * 25); index === foodPos; index = Math.floor(Math.random() * 25)) {
         index = Math.floor(Math.random() * 25);
     }
     let snake = document.getElementById(index);
@@ -48,29 +47,35 @@ function snake() {
 
 
 function createFood() {
+    let randomIndex = Math.floor(Math.random() * 25);
     let food = document.getElementById(randomIndex);
     food.classList.add("food");
-    food.style.backgroundColor = "red";
-    foodpos = randomIndex;
+    foodPos = randomIndex;
 };
 
-function eatFood() {};
+function eatFood() {
+    if (snakePos === foodPos) {
+        document.getElementById(foodPos).classList.remove("food");
+        createFood();
+    }
+};
 
 function moveSnake(e) {
     document.getElementById(snakePos).classList.remove("snake");
-        if (keys[e.key]) {
-            if (e.key === "ArrowUp") {
-                snakePos -= 5;
-            } else if (e.key === "ArrowDown") {
-                snakePos += 5;
-            } else if (e.key === "ArrowLeft") {
-                snakePos -= 1;
-            } else if (e.key === "ArrowRight") {
-                snakePos += 1;
-            } 
-        };
-        document.getElementById(snakePos).classList.add("snake");
+    if (keys[e.key]) {
+        if (e.key === "ArrowUp") {
+            snakePos -= 5;
+        } else if (e.key === "ArrowDown") {
+            snakePos += 5;
+        } else if (e.key === "ArrowLeft") {
+            snakePos -= 1;
+        } else if (e.key === "ArrowRight") {
+            snakePos += 1;
+        } 
     };
+    document.getElementById(snakePos).classList.add("snake");
+    eatFood();
+};
 
 
 

@@ -9,13 +9,7 @@
     align-items: center;
 }
 
-#rules {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.difficulty{
+.buttons{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,6 +27,9 @@
 /* put the box border temporarily so that I can see the movement later on more clearly, will take out when game done */
 .box { 
     border: 1px solid black;
+}
+.food {
+    background-color: red;
 }
 .snake {
     background-color: green;
