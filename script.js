@@ -8,10 +8,10 @@ let snakePos = 0
 let foodPos = 0
 let randomIndex = Math.floor(Math.random() * 25);
 let keys = {
-    ArrowUp: false,
-    ArrowLeft: false,
-    ArrowRight: false,
-    ArrowDown: false
+    ArrowUp: true,
+    ArrowLeft: true,
+    ArrowRight: true,
+    ArrowDown: true
   };
 
 /*----- cached elements  -----*/
@@ -21,8 +21,7 @@ let keys = {
 
 
 /*----- event listeners -----*/
-document.addEventListener("keydown", keyDown);
-document.addEventListener("keyUp", keyUp);
+document.addEventListener("keydown", moveSnake);
 
 /*----- functions -----*/
 
@@ -57,41 +56,24 @@ function createFood() {
 
 function eatFood() {};
 
-function moveSnake() {
-    if (keys.ArrowUp) {
-        snakePos -= 5;
-      }
-    
-      if (keys.ArrowDown) {
-        snakePos += 5;
-      }
-    
-      if (keys.ArrowLeft) {
-        snakePos -= 1;
-      }
-    
-      if (keys.ArrowRight) {
-        snakePos += 1;
-      }
-// need to remove the old snake position
-    const oldSnakePos = document.querySelector(".snake");
-    if(oldSnakePos) {
-        oldSnakePos.classList.remove("snake");
-    }
-    const newSnakePos = document.getElementById(snakePos);
-        newSnakePos.classList.add("snake");
-};
+function moveSnake(e) {
+    document.getElementById(snakePos).classList.remove("snake");
+        if (keys[e.key]) {
+            if (e.key === "ArrowUp") {
+                snakePos -= 5;
+            } else if (e.key === "ArrowDown") {
+                snakePos += 5;
+            } else if (e.key === "ArrowLeft") {
+                snakePos -= 1;
+            } else if (e.key === "ArrowRight") {
+                snakePos += 1;
+            } 
+        };
+        document.getElementById(snakePos).classList.add("snake");
+    };
 
-function keyDown (e) {
-    e.preventDefault();
-    keys[e.key] = true;
-    moveSnake();
-}
 
-function keyUp (e) {
-    e.preventDefault();
-    keys[e.key] = false;
-}
+
 
 // Render
 
