@@ -1,5 +1,9 @@
 /*----- constants -----*/
 const grid = document.getElementById("grid");
+const topBorder = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const rightBorder = [9, 19, 29, 39, 49, 59, 69, 79, 89, 99];
+const btmBorder = [90, 91, 92, 93, 94, 95, 96, 97, 98, 99];
+const leftBorder = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90];
 
 
 
@@ -7,6 +11,8 @@ const grid = document.getElementById("grid");
 let snakePos = 0
 let foodPos = 0
 let direction = null
+let lastInputDirection = null
+
 
 /*----- cached elements  -----*/
 class Queue {
@@ -75,22 +81,27 @@ function moveSnake(e) {
     document.getElementById(snakePos).classList.remove("snake");
     switch (e.key) {
         case "ArrowUp":
+            if (lastInputDirection === "down" || lastInputDirection === "up") break;
             moveUp();
             direction = "up";
             break;
         case "ArrowDown":
+            if (lastInputDirection === "down" || lastInputDirection === "up") break;
             moveDown();
             direction = "down";
             break;
         case "ArrowLeft":
+            if (lastInputDirection === "left" || lastInputDirection === "right") break;
             moveLeft();
             direction = "left";
             break;
         case "ArrowRight":
+            if (lastInputDirection === "left" || lastInputDirection === "right") break;
             moveRight();
             direction = "right";
             break;
         } 
+        lastInputDirection = direction;
         eatFood();
         growSnake();
         document.getElementById(snakePos).classList.add("snake");
@@ -114,7 +125,7 @@ function autoMoveSnake(e) {
 };
 
 function bounds(snakePos) {
-    if (snakePos > 100 || snakePos < 0) {
+    if (snakePos < 100 || snakePos >= 0) {
         return true;
     } else {
         return false;
@@ -122,16 +133,16 @@ function bounds(snakePos) {
 };
 
 function moveUp() {
-    bounds(snakePos - 10) ? snakePos : snakePos -= 10;
+    bounds(snakePos - 10) ? snakePos -= 10 : snakePos;
 };
 function moveDown() {
-    bounds(snakePos + 10) ? snakePos : snakePos += 10;
+    bounds(snakePos + 10) ? snakePos += 10 : snakePos;
 };
 function moveLeft() {
-    bounds(snakePos - 1) ? snakePos : snakePos -= 1;
+    bounds(snakePos - 1) ? snakePos -= 1 : snakePos;
 };
 function moveRight() {
-    bounds(snakePos + 1) ? snakePos : snakePos += 1;
+    bounds(snakePos + 1) ? snakePos += 1 : snakePos;
 };
 
 const myInterval = setInterval(() => {
@@ -140,7 +151,10 @@ const myInterval = setInterval(() => {
     eatFood();
 }, 400);
 
-
+function inputDirection() {
+    lastInputDirection = direction
+    return direction;
+}
 
 // Below are functions for managing the growing of the snake
 function growSnake() {
