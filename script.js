@@ -68,11 +68,20 @@ function createFood() {
     foodPos = randomIndex;
 };
 
+function createFoodAgain() {
+    foodPos = Math.floor(Math.random() * 100)
+    for (foodPos = Math.floor(Math.random() * 100); document.getElementById(foodPos).classList.contains("snake"); foodPos = Math.floor(Math.random() * 100)){
+        foodPos = Math.floor(Math.random() * 100)
+    }
+    let food = document.getElementById(foodPos);
+    food.classList.add("food"); 
+}
+
 function eatFood() {
     if (snakePos === foodPos) {
         document.getElementById(foodPos).classList.remove("food");
         currentSnakeBody.size += 1
-        createFood();
+        createFoodAgain();
     }
 };
 
