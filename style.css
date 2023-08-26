@@ -17,10 +17,10 @@
 
 #grid {
     display: grid;
-    grid-template-columns: repeat(5,auto);
-    grid-template-rows: repeat(5,auto);
-    height: 50vh;
-    width: 50vw;
+    grid-template-columns: repeat(10,auto);
+    grid-template-rows: repeat(10,auto);
+    height: 70vh;
+    width: 70vw;
     background-color: rgb(62, 62, 105);
     border: 5px solid black;
 }
