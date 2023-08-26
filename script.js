@@ -6,7 +6,7 @@ const grid = document.getElementById("grid");
 /*----- state variables -----*/
 let snakePos = 0
 let foodPos = 0
-
+let direction = null
 
 /*----- cached elements  -----*/
 class Queue {
@@ -70,27 +70,77 @@ function eatFood() {
     }
 };
 
-// function for the movement of the snake
+// function for the movement of the snake and within bound
 function moveSnake(e) {
     document.getElementById(snakePos).classList.remove("snake");
     switch (e.key) {
         case "ArrowUp":
-            snakePos -= 10;
-            break
+            moveUp();
+            direction = "up";
+            break;
         case "ArrowDown":
-            snakePos += 10;
-            break
+            moveDown();
+            direction = "down";
+            break;
         case "ArrowLeft":
-            snakePos -= 1;
-            break
+            moveLeft();
+            direction = "left";
+            break;
         case "ArrowRight":
-            snakePos += 1;
-            break
+            moveRight();
+            direction = "right";
+            break;
         } 
         eatFood();
         growSnake();
         document.getElementById(snakePos).classList.add("snake");
     };
+
+function autoMoveSnake(e) {
+    switch (e) {
+        case "up":
+            moveUp();
+            break;
+        case "down":
+            moveDown();
+            break;
+        case "left":
+            moveLeft();
+            break;
+        case "right":
+            moveRight();
+            break;   
+    };
+};
+
+function bounds(snakePos) {
+    if (snakePos > 100 || snakePos < 0) {
+        return true;
+    } else {
+        return false;
+    };
+};
+
+function moveUp() {
+    bounds(snakePos - 10) ? snakePos : snakePos -= 10;
+};
+function moveDown() {
+    bounds(snakePos + 10) ? snakePos : snakePos += 10;
+};
+function moveLeft() {
+    bounds(snakePos - 1) ? snakePos : snakePos -= 1;
+};
+function moveRight() {
+    bounds(snakePos + 1) ? snakePos : snakePos += 1;
+};
+
+const myInterval = setInterval(() => {
+    autoMoveSnake(direction);
+    growSnake();
+    eatFood();
+}, 400);
+
+
 
 // Below are functions for managing the growing of the snake
 function growSnake() {
@@ -113,7 +163,7 @@ function clearOld() {
 
 
 
-// Render
+// Render Game
 
 function render() {
     createBoard();
