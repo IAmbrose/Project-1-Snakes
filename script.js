@@ -28,7 +28,6 @@ class Queue {
     }
 }
 const currentSnakeBody = new Queue(2);
-const tail = new Queue(2);
 
 
 
@@ -167,20 +166,20 @@ function inputDirection() {
 
 // Below are functions for managing the growing of the snake
 function growSnake() {
-    body();
-    clearOld();
-    currentSnakeBody.list.map((i) => document.getElementById(i).classList.add("snake"));
-};
-
-function body() {
     currentSnakeBody.push(snakePos);
-    tail.push(currentSnakeBody.list[0]);
-};
-
-function clearOld() {
-    tail.list.map(i => document.getElementById(i).classList.remove("snake"));
+    clearOld();
+    for (let i = 0; i < currentSnakeBody.list.length; i++) {
+        document.getElementById(currentSnakeBody.list[i]).classList.add("snake");
+    }
 }
 
+
+function clearOld() {
+    const elementsToRemove = Array.from(document.querySelectorAll(".snake"));
+    for (let i = 0; i < elementsToRemove.length; i++) {
+        elementsToRemove[i].classList.remove("snake");
+    }
+}
 
 
 
