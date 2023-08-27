@@ -86,7 +86,6 @@ function eatFood() {
 
 // function for the movement of the snake and within bound
 function moveSnake(e) {
-    document.getElementById(snakePos).classList.remove("snake");
     switch (e.key) {
         case "ArrowUp":
             if (lastInputDirection === "down" || lastInputDirection === "up") break;
@@ -112,7 +111,6 @@ function moveSnake(e) {
         lastInputDirection = direction;
         eatFood();
         growSnake();
-        document.getElementById(snakePos).classList.add("snake");
     };
 
 function autoMoveSnake(e) {
@@ -132,25 +130,37 @@ function autoMoveSnake(e) {
     };
 };
 
-function bounds(snakePos) {
-    if (snakePos < 100 || snakePos >= 0) {
-        return true;
+
+function moveUp() {
+    if (topBorder.includes(snakePos)) {
+        gameOver();
     } else {
-        return false;
+        snakePos -=10;
     };
 };
 
-function moveUp() {
-    bounds(snakePos - 10) ? snakePos -= 10 : snakePos;
-};
 function moveDown() {
-    bounds(snakePos + 10) ? snakePos += 10 : snakePos;
+    if (btmBorder.includes(snakePos)) {
+        gameOver();
+    } else {
+        snakePos +=10;
+    };
 };
+
 function moveLeft() {
-    bounds(snakePos - 1) ? snakePos -= 1 : snakePos;
+    if (leftBorder.includes(snakePos)) {
+        gameOver();
+    } else {
+        snakePos -=1;
+    };
 };
+
 function moveRight() {
-    bounds(snakePos + 1) ? snakePos += 1 : snakePos;
+    if (rightBorder.includes(snakePos)) {
+        gameOver();
+    } else {
+        snakePos +=1;
+    };
 };
 
 const myInterval = setInterval(() => {
@@ -181,7 +191,10 @@ function clearOld() {
     }
 }
 
-
+function gameOver() {
+    clearInterval(myInterval);
+    alert("Game Over!");
+}
 
 
 
