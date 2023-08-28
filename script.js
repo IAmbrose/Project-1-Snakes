@@ -4,7 +4,7 @@ const topBorder = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const rightBorder = [9, 19, 29, 39, 49, 59, 69, 79, 89, 99];
 const btmBorder = [90, 91, 92, 93, 94, 95, 96, 97, 98, 99];
 const leftBorder = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90];
-const p = document.getElementById("p");
+const scoreIndex = document.getElementById("scoreindex");
 
 /*----- state variables -----*/
 let snakePos = 0
@@ -12,8 +12,7 @@ let foodPos = 0
 let direction = null
 let lastInputDirection = null
 let score = 0
-
-
+let start = false;
 
 /*----- cached elements  -----*/
 class Queue {
@@ -81,7 +80,6 @@ function eatFood() {
         document.getElementById(foodPos).classList.remove("food");
         currentSnakeBody.size += 1
         score += 1
-        p
         createFoodAgain();
     }
 };
@@ -113,6 +111,7 @@ function moveSnake(e) {
         lastInputDirection = direction;
         eatFood();
         growSnake();
+        start = true
     };
 
 function autoMoveSnake(direction) {
@@ -170,7 +169,7 @@ const myInterval = setInterval(() => {
     autoMoveSnake(direction);
     growSnake();
     eatFood();
-    p.innerText = score;
+    scoreIndex.innerText = score;
 }, 200);
 
 function inputDirection() {
@@ -201,9 +200,11 @@ function gameOver() {
 }
 
 function eatBody() {
+    if (start === true){
     for(let i = 1; i < currentSnakeBody.list.length - 1; i++) {
         if (currentSnakeBody.list[i] === snakePos) {
             gameOver();
+         };
         };
     };
 };
