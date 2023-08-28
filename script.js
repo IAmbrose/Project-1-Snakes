@@ -167,10 +167,10 @@ function moveRight() {
 };
 
 const myInterval = setInterval(() => {
-    eatBody();
     autoMoveSnake(direction);
     eatFood();
     growSnake();
+    eatBody();
     scoreIndex.innerText = score;
 }, 200);
 

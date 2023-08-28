@@ -20,15 +20,15 @@
     display: grid;
     grid-template-columns: repeat(15,auto);
     grid-template-rows: repeat(15,auto);
-    height: 70vh;
-    width: 70vw;
+    height: 600px;
+    width: 600px;
     background-color: rgb(62, 62, 105);
     border: 5px solid black;
 }
 /* put the box border temporarily so that I can see the movement later on more clearly, will take out when game done */
-.box { 
+/* .box { 
     border: 1px solid black;
-}
+} */
 .food {
     background-color: red;
 }
