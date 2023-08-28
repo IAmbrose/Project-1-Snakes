@@ -16,6 +16,7 @@ let direction = null
 let lastInputDirection = null
 let score = 0
 let start = false;
+let intervalSpeed = 200;
 
 
 
@@ -168,16 +169,16 @@ function moveRight() {
 
 const myInterval = setInterval(() => {
     autoMoveSnake(direction);
+    eatBody();
     eatFood();
     growSnake();
-    eatBody();
     scoreIndex.innerText = score;
-}, 200);
+}, intervalSpeed);
 
 function inputDirection() {
     lastInputDirection = direction
     return direction;
-}
+};
 
 // Below are functions for managing the growing of the snake
 function growSnake() {
@@ -185,24 +186,23 @@ function growSnake() {
     clearOld();
     for (let i = 0; i < currentSnakeBody.list.length; i++) {
         document.getElementById(currentSnakeBody.list[i]).classList.add("snake");
-    }
-}
+    };
+};
 
 
 function clearOld() {
     const toRemove = Array.from(document.querySelectorAll(".snake"));
     for (let i = 0; i < toRemove.length; i++) {
         toRemove[i].classList.remove("snake");
-    }
-}
+    };
+};
 
 function gameOver() {
     clearInterval(myInterval);
     if (confirm("Game Over! You achieve a score of " + score + ". Press Ok to restart.")){
         window.location.reload();
-    }
-
-}
+    };
+};
 
 function eatBody() {
     if (start === true){
