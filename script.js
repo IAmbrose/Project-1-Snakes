@@ -1,10 +1,13 @@
 /*----- constants -----*/
 const grid = document.getElementById("grid");
-const topBorder = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]; // try to change this to make it more variable
-const rightBorder = [9, 19, 29, 39, 49, 59, 69, 79, 89, 99];
-const btmBorder = [90, 91, 92, 93, 94, 95, 96, 97, 98, 99];
-const leftBorder = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90];
+const gridSize = 225;
+const borderSize = Math.sqrt(gridSize);
+const topBorder = Array.from({length: borderSize}, (_, index) => (index));
+const rightBorder = Array.from({ length: borderSize }, (_, index) => (borderSize - 1) + (index * borderSize));
+const btmBorder = Array.from({ length: borderSize }, (_, index) => gridSize - borderSize + index);
+const leftBorder = Array.from({ length: borderSize }, (_, index) => index * borderSize);
 const scoreIndex = document.getElementById("scoreindex");
+
 
 /*----- state variables -----*/
 let snakePos = 0
@@ -13,6 +16,8 @@ let direction = null
 let lastInputDirection = null
 let score = 0
 let start = false;
+
+
 
 /*----- cached elements  -----*/
 class Queue {
@@ -40,7 +45,7 @@ document.addEventListener("keydown", moveSnake);
 
 
 function createBoard() {
-    for (i = 0; i < 100; i++) {
+    for (i = 0; i < gridSize; i++) {
         const box = document.createElement("div");
         box.classList.add("box");
         grid.append(box);
@@ -50,9 +55,9 @@ function createBoard() {
 
 // Function for the main snake position generation
 function snake() {
-    let index = Math.floor(Math.random() * 100);
-    for (index = Math.floor(Math.random() * 100); index === foodPos; index = Math.floor(Math.random() * 100)) {
-        index = Math.floor(Math.random() * 100);
+    let index;
+    for (index = Math.floor(Math.random() *gridSize); index === foodPos; index = Math.floor(Math.random() * gridSize)) {
+        index = Math.floor(Math.random() * gridSize);
     }
     let snake = document.getElementById(index);
     snake.classList.add("snake");
@@ -60,10 +65,10 @@ function snake() {
 };
 
 // Below are functions for the food
-function createFood() { //find a way to merge the createfoodagain inside, (think available squares)
-    let randomIndex = Math.floor(Math.random() * 100);
-    for (randomIndex = Math.floor(Math.random() * 100); document.getElementById(randomIndex).classList.contains("snake"); randomIndex = Math.floor(Math.random() * 100)){
-        randomIndex = Math.floor(Math.random() * 100)
+function createFood() {
+    let randomIndex;
+    for (randomIndex = Math.floor(Math.random() * gridSize); document.getElementById(randomIndex).classList.contains("snake"); randomIndex = Math.floor(Math.random() * gridSize)){
+        randomIndex = Math.floor(Math.random() * gridSize)
     }
     let food = document.getElementById(randomIndex);
     food.classList.add("food");
@@ -133,7 +138,7 @@ function moveUp() {
     if (topBorder.includes(snakePos)) {
         gameOver();
     } else {
-        snakePos -=10;
+        snakePos -=borderSize;
     };
 };
 
@@ -141,7 +146,7 @@ function moveDown() {
     if (btmBorder.includes(snakePos)) {
         gameOver();
     } else {
-        snakePos +=10;
+        snakePos +=borderSize;
     };
 };
 
