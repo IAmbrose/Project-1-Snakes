@@ -168,10 +168,10 @@ function moveRight() {
 const myInterval = setInterval(() => {
     eatBody();
     autoMoveSnake(direction);
-    growSnake();
     eatFood();
+    growSnake();
     scoreIndex.innerText = score;
-}, 200);
+}, 100);
 
 function inputDirection() {
     lastInputDirection = direction
@@ -205,7 +205,7 @@ function gameOver() {
 
 function eatBody() {
     if (start === true){
-    for(let i = 1; i < currentSnakeBody.list.length - 1; i++) {
+    for(let i = 0; i < currentSnakeBody.list.length - 1; i++) {
         if (currentSnakeBody.list[i] === snakePos) {
             gameOver();
          };
