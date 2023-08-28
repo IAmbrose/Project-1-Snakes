@@ -85,25 +85,24 @@ function eatFood() {
 
 // function for the movement of the snake and within bound
 function moveSnake(e) {
-    
     switch (e.key) {
         case "ArrowUp":
-            if (lastInputDirection === "down" || lastInputDirection === "up") break;
+            if (lastInputDirection === "down" || lastInputDirection === "up") return;
             moveUp();
             direction = "up";
             break;
         case "ArrowDown":
-            if (lastInputDirection === "down" || lastInputDirection === "up") break;
+            if (lastInputDirection === "down" || lastInputDirection === "up") return;
             moveDown();
             direction = "down";
             break;
         case "ArrowLeft":
-            if (lastInputDirection === "left" || lastInputDirection === "right") break;
+            if (lastInputDirection === "left" || lastInputDirection === "right") return;
             moveLeft();
             direction = "left";
             break;
         case "ArrowRight":
-            if (lastInputDirection === "left" || lastInputDirection === "right") break;
+            if (lastInputDirection === "left" || lastInputDirection === "right") return;
             moveRight();
             direction = "right";
             break;
