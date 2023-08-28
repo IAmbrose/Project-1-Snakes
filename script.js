@@ -1,6 +1,6 @@
 /*----- constants -----*/
 const grid = document.getElementById("grid");
-const topBorder = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const topBorder = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]; // try to change this to make it more variable
 const rightBorder = [9, 19, 29, 39, 49, 59, 69, 79, 89, 99];
 const btmBorder = [90, 91, 92, 93, 94, 95, 96, 97, 98, 99];
 const leftBorder = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90];
@@ -19,14 +19,16 @@ class Queue {
     constructor(size) {
         this.size = size;
         this.list =[];
-        this.push = function push(i) {
-            this.list.push(i)
-            if (this.list.length > this.size) {
-                this.list.shift();
-            }
+    }
+    push(i) { 
+        this.list.push(i)
+        if (this.list.length > this.size) {
+            this.list.shift();
         }
     }
 }
+
+
 const currentSnakeBody = new Queue(3);
 
 
@@ -58,28 +60,22 @@ function snake() {
 };
 
 // Below are functions for the food
-function createFood() {
+function createFood() { //find a way to merge the createfoodagain inside, (think available squares)
     let randomIndex = Math.floor(Math.random() * 100);
+    for (randomIndex = Math.floor(Math.random() * 100); document.getElementById(randomIndex).classList.contains("snake"); randomIndex = Math.floor(Math.random() * 100)){
+        randomIndex = Math.floor(Math.random() * 100)
+    }
     let food = document.getElementById(randomIndex);
     food.classList.add("food");
     foodPos = randomIndex;
 };
-
-function createFoodAgain() {
-    foodPos = Math.floor(Math.random() * 100)
-    for (foodPos = Math.floor(Math.random() * 100); document.getElementById(foodPos).classList.contains("snake"); foodPos = Math.floor(Math.random() * 100)){
-        foodPos = Math.floor(Math.random() * 100)
-    }
-    let food = document.getElementById(foodPos);
-    food.classList.add("food"); 
-}
 
 function eatFood() {
     if (snakePos === foodPos) {
         document.getElementById(foodPos).classList.remove("food");
         currentSnakeBody.size += 1
         score += 1
-        createFoodAgain();
+        createFood();
     }
 };
 
@@ -171,7 +167,7 @@ const myInterval = setInterval(() => {
     eatFood();
     growSnake();
     scoreIndex.innerText = score;
-}, 100);
+}, 200);
 
 function inputDirection() {
     lastInputDirection = direction
@@ -213,14 +209,6 @@ function eatBody() {
     };
 };
 
-
-
-function rules() {
-}
-
-
-function restartGame(){
-}
 
 
 // Render Game
