@@ -31,7 +31,6 @@ const currentSnakeBody = new Queue(3);
 
 
 
-
 /*----- event listeners -----*/
 document.addEventListener("keydown", moveSnake);
 
@@ -196,7 +195,10 @@ function clearOld() {
 
 function gameOver() {
     clearInterval(myInterval);
-    alert("Game Over! You achieve a score of " + score);
+    if (confirm("Game Over! You achieve a score of " + score + ". Press Ok to restart.")){
+        window.location.reload();
+    }
+
 }
 
 function eatBody() {
@@ -208,6 +210,8 @@ function eatBody() {
         };
     };
 };
+
+
 
 function rules() {
 }
