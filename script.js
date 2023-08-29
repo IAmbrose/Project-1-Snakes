@@ -15,7 +15,8 @@ const closeBtn = document.getElementById("close"); // Grabbing close button
 const openModal = () => {
     modal.showModal()
 }
-
+const hardCoreButton = document.getElementById("hardcore");
+const gridArray = Array.from({length: gridSize});
 
 
 
@@ -28,8 +29,11 @@ let score = 0
 let start = false;
 let intervalSpeed = 200;
 let hardButtonClicked = false;
-let hardInterval = null
+let hardInterval = null;
 let rulesButtonClicked = false;
+let hardCoreButtonClicked = false;
+let hardCoreInterval = null;
+let obstaclePos = [];
 
 
 
@@ -55,7 +59,8 @@ const currentSnakeBody = new Queue(3);
 
 /*----- event listeners -----*/
 document.addEventListener("keydown", moveSnake);
-hardButton.addEventListener("click", handleClick);
+hardButton.addEventListener("click", handleHardClick);
+hardCoreButton.addEventListener("click", handleHardCoreClick);
 //Add event listener to rules button
 openBtn.addEventListener("click", openModal);
 
@@ -103,10 +108,16 @@ function eatFood() {
         currentSnakeBody.size += 1
         if (intervalSpeed >= 200) {
             score += 1;
-        } else {
+            createFood();
+        } else if (intervalSpeed >= 80){
             score += 3;
+            createFood();
+        } else {
+            score +=5;
+            createFood();
+            removeObstacle();
+            createObstacle();
         }
-        createFood();
     }
 };
 
@@ -117,21 +128,25 @@ function moveSnake(e) {
             if (lastInputDirection === "down" || lastInputDirection === "up") return;
             moveUp();
             direction = "up";
+            e.preventDefault();
             break;
         case "ArrowDown":
             if (lastInputDirection === "down" || lastInputDirection === "up") return;
             moveDown();
             direction = "down";
+            e.preventDefault();
             break;
         case "ArrowLeft":
             if (lastInputDirection === "left" || lastInputDirection === "right") return;
             moveLeft();
             direction = "left";
+            e.preventDefault();
             break;
         case "ArrowRight":
             if (lastInputDirection === "left" || lastInputDirection === "right") return;
             moveRight();
             direction = "right";
+            e.preventDefault();
             break;
         default:
             return;
@@ -161,7 +176,7 @@ function autoMoveSnake(direction) {
 
 
 function moveUp() {
-    if (topBorder.includes(snakePos)) {
+    if (topBorder.includes(snakePos) || document.getElementById(snakePos).classList.contains("obstacle")) {
         gameOver();
     } else {
         snakePos -=borderSize;
@@ -169,7 +184,7 @@ function moveUp() {
 };
 
 function moveDown() {
-    if (btmBorder.includes(snakePos)) {
+    if (btmBorder.includes(snakePos) || document.getElementById(snakePos).classList.contains("obstacle")) {
         gameOver();
     } else {
         snakePos +=borderSize;
@@ -177,7 +192,7 @@ function moveDown() {
 };
 
 function moveLeft() {
-    if (leftBorder.includes(snakePos)) {
+    if (leftBorder.includes(snakePos) || document.getElementById(snakePos).classList.contains("obstacle")) {
         gameOver();
     } else {
         snakePos -=1;
@@ -185,7 +200,7 @@ function moveLeft() {
 };
 
 function moveRight() {
-    if (rightBorder.includes(snakePos)) {
+    if (rightBorder.includes(snakePos) || document.getElementById(snakePos).classList.contains("obstacle")) {
         gameOver();
     } else {
         snakePos +=1;
@@ -225,6 +240,7 @@ function clearOld() {
 function gameOver() {
     clearInterval(myInterval);
     clearInterval(hardInterval);
+    clearInterval(hardCoreInterval);
     if (confirm("Game Over! You achieve a score of " + score + ". Press Ok to restart.")){
         window.location.reload();
     };
@@ -240,7 +256,7 @@ function eatBody() {
     };
 };
 
-function handleClick() {
+function handleHardClick() {
     hardButtonClicked = true
     clearInterval(myInterval);
     if(window.confirm ("Are you sure you wanna go hard?")) {
@@ -255,12 +271,41 @@ function handleClick() {
     };
 };
 
+function handleHardCoreClick() {
+    hardCoreButtonClicked = true
+    clearInterval(myInterval);
+    if(window.confirm ("You must be crazy... Let's Go!")) {
+        intervalSpeed = 70;
+        hardCoreInterval = setInterval(() => {
+            autoMoveSnake(direction);
+            eatBody();
+            eatFood();
+            growSnake();
+            scoreIndex.innerText = score;
+        }, intervalSpeed);
+    };
+};
 
+function createObstacle () {
+    if (hardCoreButtonClicked = true) {
+        for (let i = 0; i < 3; i++) {
+            let randomObstacleIndex;
+            for (randomObstacleIndex = Math.floor(Math.random() * gridSize); document.getElementById(randomObstacleIndex).classList.contains("snake") || document.getElementById(randomObstacleIndex).classList.contains("food"); randomObstacleIndex = Math.floor(Math.random() * gridSize)){
+                randomObstacleIndex = Math.floor(Math.random() * gridSize)
+            }
+            let obstacle = document.getElementById(randomObstacleIndex);
+            obstacle.classList.add("obstacle");
+            obstaclePos.push(randomObstacleIndex);
+        };
+    };
+};
 
-
-
-
-
+function removeObstacle() {
+    for (let i = 0; i < obstaclePos.length; i++) {
+        document.getElementById(obstaclePos[i]).classList.remove("obstacle");
+    }
+    obstaclePos = []; 
+};
 
 // Render Game
 

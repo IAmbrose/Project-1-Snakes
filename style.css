@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    max-width: 100%;
 }
 
 body {
@@ -102,6 +103,10 @@ h3 {
   font-size: 16px;
 }
 
+.difficulty-buttons {
+    display: flex;
+}
+
 #hard {
   background-color: red; 
   border: none;
@@ -111,4 +116,19 @@ h3 {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+}
+
+#hardcore {
+  background-color: orange; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.obstacle {
+    background-color: black;
 }
