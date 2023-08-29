@@ -9,6 +9,10 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-image: url(https://imgur.com/U1ByXz8.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .container {
     display: flex;
