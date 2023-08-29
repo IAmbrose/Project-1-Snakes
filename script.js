@@ -9,6 +9,13 @@ const leftBorder = Array.from({ length: borderSize }, (_, index) => index * bord
 const scoreIndex = document.getElementById("scoreindex");
 const hardButton = document.getElementById("hard");
 const rulesButton = document.getElementById("rules");
+const openBtn = document.getElementById("openModal"); // Grabbing About the Game button
+const modal = document.getElementById("modal"); // Grabbing modal element
+const closeBtn = document.getElementById("close"); // Grabbing close button
+const openModal = () => {
+    modal.showModal()
+}
+
 
 
 
@@ -49,7 +56,10 @@ const currentSnakeBody = new Queue(3);
 /*----- event listeners -----*/
 document.addEventListener("keydown", moveSnake);
 hardButton.addEventListener("click", handleClick);
-// rulesButton.addEventListener("click", rulesExplain);
+//Add event listener to About the Game button
+openBtn.addEventListener("click", openModal);
+
+
 
 
 
@@ -234,7 +244,7 @@ function handleClick() {
     hardButtonClicked = true
     clearInterval(myInterval);
     if(window.confirm ("Are you sure you wanna go hard?")) {
-        intervalSpeed = 100;
+        intervalSpeed = 80;
         hardInterval = setInterval(() => {
             autoMoveSnake(direction);
             eatBody();
@@ -244,6 +254,12 @@ function handleClick() {
         }, intervalSpeed);
     };
 };
+
+
+
+
+
+
 
 
 // Render Game

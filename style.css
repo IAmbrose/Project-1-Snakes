@@ -3,13 +3,13 @@
     padding: 0;
 }
 
-.container {
+body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-
-.buttons{
+.container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -20,15 +20,12 @@
     display: grid;
     grid-template-columns: repeat(15,auto);
     grid-template-rows: repeat(15,auto);
-    height: 600px;
-    width: 600px;
+    height: 500px;
+    width: 500px;
     background-color: rgb(62, 62, 105);
     border: 5px solid black;
 }
-/* put the box border temporarily so that I can see the movement later on more clearly, will take out when game done */
-/* .box { 
-    border: 1px solid black;
-} */
+
 .food {
     background-color: red;
 }
@@ -40,4 +37,77 @@ h1 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-bottom: 5px ;
+}
+h2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 15px ;
+}
+  
+#modal {
+    background-color: rgba(0,0,0,0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    overflow: auto;
+}
+   
+#modal-textbox {
+    background-color: white;
+    height: 350px;
+    width: 550px;
+    border-radius: 2px;
+    margin: 150px auto;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    padding: 2%;
+    line-height: 120%;
+}
+
+#modal-footer {
+ text-align: right;
+}
+
+p {
+    margin-bottom: 20px;
+}
+
+#score {
+    font-size: large;
+}
+
+h3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 15px ;
+    padding-top: 15px;
+}
+
+#openModal {
+  background-color: blue; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+#hard {
+  background-color: red; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }

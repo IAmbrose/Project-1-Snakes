@@ -16,10 +16,33 @@
         <div id="grid"></div>
     </div>
     <h1>Press any arrow key to start game!</h1>
-    <div class="buttons">
-        <button id="rules">Rules</button>   
-        <h3>Try out hard mode below!</h3>
-        <button id="hard">Hard</button>
-    </div>
+    <button id="openModal">Rules</button>   
+    <dialog id="modal">
+         <div id="modal-textbox">
+            <div id="modal-footer">
+                <form method="dialog">
+                    <button id="close">Close</button>
+                </form>
+            </div>
+            <h2>Learn to play Snakes</h2>
+            <p>
+                Snakes is played by eating the red squares known as "food". 
+                As you eat, the snake will continue to grow bigger. For each 
+                food that you eat you will gain 1 point.
+                If you touch the border of the board or if the head touches 
+                any part of the body then you will lose. 
+            </p>
+            <p>
+                If you feel confident and find the game too easy, you can try
+                the hard mode by clicking "hard". For this mode, the speed is
+                alot faster and for each food you eat you will gain 3 points.
+            </p>
+            <h2>
+                Good Luck and enjoy eating!
+            </h2>
+            </div>
+        </dialog>
+    <h3>Try out hard mode below!</h3>
+    <button id="hard">Hard</button>
 </body>
 </html>
