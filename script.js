@@ -17,7 +17,7 @@ const openModal = () => {
 }
 const hardCoreButton = document.getElementById("hardcore");
 const gridArray = Array.from({length: gridSize});
-
+const currentMode = document.getElementById("currentmode");
 
 
 /*----- state variables -----*/
@@ -34,6 +34,7 @@ let rulesButtonClicked = false;
 let hardCoreButtonClicked = false;
 let hardCoreInterval = null;
 let obstaclePos = [];
+let mode = "";
 
 
 
@@ -213,6 +214,7 @@ const myInterval = setInterval(() => {
     eatFood();
     growSnake();
     scoreIndex.innerText = score;
+    currentMode.innerText = "Normal";
 }, intervalSpeed);
 
 function inputDirection() {
@@ -243,7 +245,9 @@ function gameOver() {
     clearInterval(hardCoreInterval);
     if (confirm("Game Over! You achieve a score of " + score + ". Press Ok to restart.")){
         window.location.reload();
-    };
+    } else {
+        window.location.reload();
+    }
 };
 
 function eatBody() {
@@ -258,8 +262,8 @@ function eatBody() {
 
 function handleHardClick() {
     hardButtonClicked = true
-    clearInterval(myInterval);
-    if(window.confirm ("Are you sure you wanna go hard?")) {
+    reset();
+    if(window.confirm ("Are you sure you wanna go hard? Press OK to continue...")) {
         intervalSpeed = 80;
         hardInterval = setInterval(() => {
             autoMoveSnake(direction);
@@ -267,14 +271,17 @@ function handleHardClick() {
             eatFood();
             growSnake();
             scoreIndex.innerText = score;
+            currentMode.innerText = "Hard";
         }, intervalSpeed);
-    };
+    } else {
+        window.location.reload();
+    }
 };
 
 function handleHardCoreClick() {
     hardCoreButtonClicked = true
-    clearInterval(myInterval);
-    if(window.confirm ("You must be crazy... Let's Go!")) {
+    reset();
+    if(window.confirm ("You must be crazy... Let's Go! Press OK to continue...")) {
         intervalSpeed = 70;
         hardCoreInterval = setInterval(() => {
             autoMoveSnake(direction);
@@ -282,8 +289,11 @@ function handleHardCoreClick() {
             eatFood();
             growSnake();
             scoreIndex.innerText = score;
+            currentMode.innerText = "Hardcore";
         }, intervalSpeed);
-    };
+    } else {
+        window.location.reload();
+    }
 };
 
 function createObstacle () {
@@ -309,6 +319,13 @@ function removeObstacle() {
     }
     obstaclePos = []; 
 };
+
+function reset() {
+    clearInterval(myInterval);
+    clearInterval(hardInterval);
+    clearInterval(hardCoreInterval);
+    score = 0;
+}
 
 // Render Game
 

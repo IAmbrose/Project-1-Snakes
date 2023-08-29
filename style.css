@@ -78,9 +78,20 @@ p {
     margin-bottom: 20px;
 }
 
+.labels {
+    display: flex;
+}
+
 #score {
     font-size: large;
-    color: rgb(4, 113, 51);
+    padding-right: 150px;
+    font-weight: bold;
+}
+
+#modes {
+    font-size: large;
+    padding-left: 150px;
+    font-weight: bold;
 }
 
 h3 {
