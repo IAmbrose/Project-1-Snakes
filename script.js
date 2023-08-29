@@ -16,7 +16,7 @@ let direction = null
 let lastInputDirection = null
 let score = 0
 let start = false;
-let intervalSpeed = 200;
+let intervalSpeed = 100;
 
 
 
@@ -80,7 +80,11 @@ function eatFood() {
     if (snakePos === foodPos) {
         document.getElementById(foodPos).classList.remove("food");
         currentSnakeBody.size += 1
-        score += 1
+        if (intervalSpeed >= 200) {
+            score += 1;
+        } else {
+            score += 3;
+        }
         createFood();
     }
 };
@@ -213,6 +217,7 @@ function eatBody() {
         };
     };
 };
+
 
 
 
