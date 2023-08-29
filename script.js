@@ -8,6 +8,7 @@ const btmBorder = Array.from({ length: borderSize }, (_, index) => gridSize - bo
 const leftBorder = Array.from({ length: borderSize }, (_, index) => index * borderSize);
 const scoreIndex = document.getElementById("scoreindex");
 const hardButton = document.getElementById("hard");
+const rulesButton = document.getElementById("rules");
 
 
 
@@ -20,6 +21,7 @@ let score = 0
 let start = false;
 let intervalSpeed = 200;
 let hardButtonClicked = false;
+let hardInterval = null
 
 
 
@@ -210,6 +212,7 @@ function clearOld() {
 
 function gameOver() {
     clearInterval(myInterval);
+    clearInterval(hardInterval);
     if (confirm("Game Over! You achieve a score of " + score + ". Press Ok to restart.")){
         window.location.reload();
     };
@@ -229,7 +232,7 @@ function handleClick() {
     hardButtonClicked = true
     clearInterval(myInterval);
     intervalSpeed = 100;
-    const hardInterval = setInterval(() => {
+    hardInterval = setInterval(() => {
         autoMoveSnake(direction);
         eatBody();
         eatFood();
