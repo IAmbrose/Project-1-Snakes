@@ -7,6 +7,8 @@ const rightBorder = Array.from({ length: borderSize }, (_, index) => (borderSize
 const btmBorder = Array.from({ length: borderSize }, (_, index) => gridSize - borderSize + index);
 const leftBorder = Array.from({ length: borderSize }, (_, index) => index * borderSize);
 const scoreIndex = document.getElementById("scoreindex");
+const hardButton = document.getElementById("hard");
+
 
 
 /*----- state variables -----*/
@@ -16,7 +18,9 @@ let direction = null
 let lastInputDirection = null
 let score = 0
 let start = false;
-let intervalSpeed = 100;
+let intervalSpeed = 200;
+let hardButtonClicked = false;
+
 
 
 
@@ -41,6 +45,9 @@ const currentSnakeBody = new Queue(3);
 
 /*----- event listeners -----*/
 document.addEventListener("keydown", moveSnake);
+hardButton.addEventListener("click", handleClick);
+
+
 
 /*----- functions -----*/
 
@@ -218,6 +225,18 @@ function eatBody() {
     };
 };
 
+function handleClick() {
+    hardButtonClicked = true
+    clearInterval(myInterval);
+    intervalSpeed = 100;
+    const hardInterval = setInterval(() => {
+        autoMoveSnake(direction);
+        eatBody();
+        eatFood();
+        growSnake();
+        scoreIndex.innerText = score;
+    }, intervalSpeed);
+};
 
 
 
