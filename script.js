@@ -56,7 +56,7 @@ const currentSnakeBody = new Queue(3);
 /*----- event listeners -----*/
 document.addEventListener("keydown", moveSnake);
 hardButton.addEventListener("click", handleClick);
-//Add event listener to About the Game button
+//Add event listener to rules button
 openBtn.addEventListener("click", openModal);
 
 

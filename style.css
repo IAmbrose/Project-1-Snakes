@@ -20,8 +20,8 @@ body {
     display: grid;
     grid-template-columns: repeat(15,auto);
     grid-template-rows: repeat(15,auto);
-    height: 500px;
-    width: 500px;
+    height: 530px;
+    width: 530px;
     background-color: rgb(62, 62, 105);
     border: 5px solid black;
 }
@@ -79,6 +79,7 @@ p {
 
 #score {
     font-size: large;
+    color: rgb(4, 113, 51);
 }
 
 h3 {
