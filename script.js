@@ -292,7 +292,8 @@ function createObstacle () {
             let randomObstacleIndex;
             for (randomObstacleIndex = Math.floor(Math.random() * gridSize); document.getElementById(randomObstacleIndex).classList.contains("snake") || document.getElementById(randomObstacleIndex).classList.contains("food") || randomObstacleIndex === (snakePos -1) ||
             randomObstacleIndex === (snakePos +1) || randomObstacleIndex === (snakePos - borderSize) || randomObstacleIndex === (snakePos + borderSize) || randomObstacleIndex === (snakePos -2) ||
-            randomObstacleIndex === (snakePos +2) || randomObstacleIndex === (snakePos - borderSize*2) || randomObstacleIndex === (snakePos + borderSize*2); randomObstacleIndex = Math.floor(Math.random() * gridSize)){
+            randomObstacleIndex === (snakePos +2) || randomObstacleIndex === (snakePos - borderSize*2) || randomObstacleIndex === (snakePos + borderSize*2) || randomObstacleIndex === (foodPos -1) ||
+            randomObstacleIndex === (foodPos +1) || randomObstacleIndex === (foodPos - borderSize) || randomObstacleIndex === (foodPos + borderSize); randomObstacleIndex = Math.floor(Math.random() * gridSize)){
                 randomObstacleIndex = Math.floor(Math.random() * gridSize)
             }
             let obstacle = document.getElementById(randomObstacleIndex);
