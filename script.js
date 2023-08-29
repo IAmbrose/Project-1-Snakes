@@ -22,6 +22,7 @@ let start = false;
 let intervalSpeed = 200;
 let hardButtonClicked = false;
 let hardInterval = null
+let rulesButtonClicked = false;
 
 
 
@@ -48,6 +49,7 @@ const currentSnakeBody = new Queue(3);
 /*----- event listeners -----*/
 document.addEventListener("keydown", moveSnake);
 hardButton.addEventListener("click", handleClick);
+// rulesButton.addEventListener("click", rulesExplain);
 
 
 
@@ -231,16 +233,17 @@ function eatBody() {
 function handleClick() {
     hardButtonClicked = true
     clearInterval(myInterval);
-    intervalSpeed = 100;
-    hardInterval = setInterval(() => {
-        autoMoveSnake(direction);
-        eatBody();
-        eatFood();
-        growSnake();
-        scoreIndex.innerText = score;
-    }, intervalSpeed);
+    if(window.confirm ("Are you sure you wanna go hard?")) {
+        intervalSpeed = 100;
+        hardInterval = setInterval(() => {
+            autoMoveSnake(direction);
+            eatBody();
+            eatFood();
+            growSnake();
+            scoreIndex.innerText = score;
+        }, intervalSpeed);
+    };
 };
-
 
 
 // Render Game
