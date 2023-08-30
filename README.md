@@ -64,11 +64,20 @@ Snakes is an old school classic game where the player controls a long snake to r
 The game is deployed on GitHub Pages, and you can play the game here:
 https://iambrose.github.io/Project-1-Snakes/
 
+## Future Features
+
+- Create a leaderboard for the game.
+- Create more unique game featues such as an extra life/ invulnerability.
+- Create forbidden food that when eaten the game will end, or even food that will increase scores but will only be available for a limited amount of time.
+
 ## Credit Resources
 
 ### Concept of utilizing arrowkeys: 
+
 https://stackoverflow.com/questions/62322739/arrow-keys-in-car-game
+
 https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key
+
 https://stackoverflow.com/questions/6620949/difference-between-return-and-break-statements
 
 ### Reloading of page for restarting of game:
