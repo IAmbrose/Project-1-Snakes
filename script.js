@@ -210,6 +210,7 @@ function moveRight() {
     };
 };
 
+//funcion for the default interval
 const myInterval = setInterval(() => {
     autoMoveSnake(direction);
     eatBody();
@@ -241,6 +242,7 @@ function clearOld() {
     };
 };
 
+// gameOver functions
 function gameOver() {
     clearInterval(myInterval);
     clearInterval(hardInterval);
@@ -262,6 +264,7 @@ function eatBody() {
     };
 };
 
+// difficulty modes functions
 function handleHardClick() {
     hardButtonClicked = true
     reset();
@@ -298,6 +301,7 @@ function handleHardCoreClick() {
     }
 };
 
+// creating Obstacle for hardcore mode maximum of 3 obstacle
 function createObstacle () {
     if (hardCoreButtonClicked = true) {
         for (let i = 0; i < 3; i++) {
