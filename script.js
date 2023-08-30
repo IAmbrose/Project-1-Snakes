@@ -2,6 +2,8 @@
 const grid = document.getElementById("grid");
 const gridSize = 225;
 const borderSize = Math.sqrt(gridSize);
+grid.style.gridTemplateColumns = `repeat(${borderSize}, auto)`;
+grid.style.gridTemplateRows = `repeat(${borderSize}, auto)`;
 const topBorder = Array.from({length: borderSize}, (_, index) => (index)); // added borders for the game, made it more flexible when i change the gridsize.
 const rightBorder = Array.from({ length: borderSize }, (_, index) => (borderSize - 1) + (index * borderSize));
 const btmBorder = Array.from({ length: borderSize }, (_, index) => gridSize - borderSize + index);

@@ -23,8 +23,6 @@ body {
 
 #grid {
     display: grid;
-    grid-template-columns: repeat(15,auto);
-    grid-template-rows: repeat(15,auto);
     height: 530px;
     width: 530px;
     background-color: rgb(62, 62, 105);
