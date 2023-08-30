@@ -68,7 +68,7 @@ https://iambrose.github.io/Project-1-Snakes/
 
 - Create a leaderboard for the game.
 - Create more unique game featues such as an extra life/ invulnerability.
-- Create forbidden food that when eaten the game will end, or even food that will increase scores but will only be available for a limited amount of time.
+- Create a tier list for different food that will increase your score and not just dependent on the game mode, however these food will only be available for a limited amount of time.
 
 ## Credit Resources
 
