@@ -2,7 +2,7 @@
 const grid = document.getElementById("grid");
 const gridSize = 225;
 const borderSize = Math.sqrt(gridSize);
-const topBorder = Array.from({length: borderSize}, (_, index) => (index));
+const topBorder = Array.from({length: borderSize}, (_, index) => (index)); // added borders for the game, made it more flexible when i change the gridsize.
 const rightBorder = Array.from({ length: borderSize }, (_, index) => (borderSize - 1) + (index * borderSize));
 const btmBorder = Array.from({ length: borderSize }, (_, index) => gridSize - borderSize + index);
 const leftBorder = Array.from({ length: borderSize }, (_, index) => index * borderSize);
@@ -40,12 +40,12 @@ let mode = "";
 
 
 /*----- cached elements  -----*/
-class Queue {
+class Queue { //This is for building the snake body, follows the FIFO principle.
     constructor(size) {
         this.size = size;
         this.list =[];
     }
-    push(i) { 
+    push(i) {  //This is in conjuction with the movement of the snake, while it moves the first value of the list is removed.
         this.list.push(i)
         if (this.list.length > this.size) {
             this.list.shift();
@@ -54,7 +54,7 @@ class Queue {
 }
 
 
-const currentSnakeBody = new Queue(3);
+const currentSnakeBody = new Queue(3); //starting size of snake will be 3
 
 
 
@@ -103,7 +103,7 @@ function createFood() {
     foodPos = randomIndex;
 };
 
-function eatFood() {
+function eatFood() { //implement the if statements for the different modes based on the speed.
     if (snakePos === foodPos) {
         document.getElementById(foodPos).classList.remove("food");
         currentSnakeBody.size += 1
@@ -123,13 +123,13 @@ function eatFood() {
 };
 
 // function for the movement of the snake and within bound
-function moveSnake(e) {
+function moveSnake(e) { 
     switch (e.key) {
         case "ArrowUp":
             if (lastInputDirection === "down" || lastInputDirection === "up") return;
             moveUp();
             direction = "up";
-            e.preventDefault();
+            e.preventDefault(); //prevents the windows screen from moving around when arrowkeys are pressed.
             break;
         case "ArrowDown":
             if (lastInputDirection === "down" || lastInputDirection === "up") return;
