@@ -64,6 +64,20 @@ Snakes is an old school classic game where the player controls a long snake to r
 The game is deployed on GitHub Pages, and you can play the game here:
 https://iambrose.github.io/Project-1-Snakes/
 
+## Favourite JS function
+
+My favourite JS functions has got to be the functions that move the snake. There are multiple functions that go hand-in-hand to allow the snake to move based on the event listener of clicking the arrowkeys
+and also the set interval function that automates the moving of the snake. It's my favourite because along the way as the game develops and I implement more ideas to the game, I had to constantly change/update these 
+functions, however with every updates there are always oversights leading to some bugs. Thus it was quite fulfulling to try and resolve these bugs and see how it all plays out.
+
+## Key Challenges
+
+One of the challenges I faced was to figure out how to make the snake maintain its shape while moving. Also had to ensure that the snake could not go the opposite direction and kill itself.
+
+## Key Learnings
+There are definitely several key takeaways from this project, considering it's my first. It has significantly increase my comprehension of functions, loops and conditional statements. It has also open my awareness of how
+these components can come together to create a game. Furthermore, it really emphasis the crucial nature of the planning stage. Without proper planning, I would have definitely felt lost and wasted a significant amount of time trying to figure things out on the go.
+
 ## Future Features
 
 - Create a leaderboard for the game.
